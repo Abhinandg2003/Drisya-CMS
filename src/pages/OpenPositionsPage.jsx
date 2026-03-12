@@ -7,7 +7,7 @@ import { backendUrl } from "../lib/config";
 
 const createInitialPositionState = () => ({
   title: "",
-  department: ["Sales & Showroom"],
+  department: "Sales & Showroom",
   type: ["Full-time"],
   location: "Ernakulam, Kerala",
   description: "",
@@ -72,16 +72,16 @@ const OpenPositionsPage = ({ token }) => {
       setIsSaving(true);
 
       const payload = {
-        title: formData.title,
-        department: formData.department,
-        type: formData.type,
-        location: formData.location,
-        description: formData.description,
-        requirements: formData.requirementsText
-          .split("\n")
-          .map((item) => item.trim())
-          .filter(Boolean),
-      };
+  title: formData.title,
+  department: [formData.department],
+  type: formData.type,
+  location: formData.location,
+  description: formData.description,
+  requirements: formData.requirementsText
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean),
+};
 
       const { data } = editingId
         ? await axios.put(
@@ -111,13 +111,13 @@ const OpenPositionsPage = ({ token }) => {
   const handleEdit = (openPosition) => {
     setEditingId(openPosition._id);
     setFormData({
-      title: openPosition.title,
-      department: openPosition.department,
-      type: openPosition.type,
-      location: openPosition.location,
-      description: openPosition.description,
-      requirementsText: openPosition.requirements.join("\n"),
-    });
+  title: openPosition.title,
+  department: openPosition.department[0],
+  type: openPosition.type,
+  location: openPosition.location,
+  description: openPosition.description,
+  requirementsText: openPosition.requirements.join("\n"),
+});
 
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -230,19 +230,19 @@ const OpenPositionsPage = ({ token }) => {
               <span className="text-sm font-semibold text-[var(--ink)]">Departments</span>
               <div className="flex flex-wrap gap-3">
                 {departmentOptions.map((option) => {
-                  const active = formData.department.includes(option);
+  const active = formData.department === option;
 
-                  return (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() => toggleSelection("department", option)}
-                      className={`option-pill ${active ? "option-pill-active" : ""}`}
-                    >
-                      {option}
-                    </button>
-                  );
-                })}
+  return (
+    <button
+      key={option}
+      type="button"
+      onClick={() => updateField("department", option)}
+      className={`option-pill ${active ? "option-pill-active" : ""}`}
+    >
+      {option}
+    </button>
+  );
+})}
               </div>
             </div>
 
