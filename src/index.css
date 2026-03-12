@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #f4ede4;
+  --canvas-deep: #eadaca;
+  --card: #fff9f2;
+  --ink: #470c0b;
+  --muted: #736458;
+  --accent: #7e2e1e;
+  --accent-dark: #711a19;
+  --forest: #4f6a57;
+  --line: rgba(93, 73, 51, 0.18);
+  --danger: #9d4d43;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.72), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(214, 180, 143, 0.45), transparent 28%),
+    linear-gradient(135deg, var(--canvas), var(--canvas-deep));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(90, 65, 39, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 65, 39, 0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black 58%, transparent 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: -0.03em;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.9rem 1rem;
+  color: var(--ink);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(115, 100, 88, 0.82);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: rgba(166, 106, 44, 0.65);
+  box-shadow: 0 0 0 4px rgba(166, 106, 44, 0.14);
+  transform: translateY(-1px);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.panel-shell {
+  border: 1px solid var(--line);
+  background: rgba(255, 249, 242, 0.78);
+  box-shadow: 0 24px 60px rgba(61, 44, 29, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.primary-button,
+.secondary-button,
+.danger-button,
+.option-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.primary-button {
+  border: 1px solid transparent;
+  color: #fff8f1;
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+  box-shadow: 0 14px 24px rgba(123, 76, 29, 0.22);
+}
+
+.secondary-button {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.danger-button {
+  border: 1px solid rgba(157, 77, 67, 0.16);
+  color: var(--danger);
+  background: rgba(157, 77, 67, 0.08);
+}
+
+.option-pill {
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.option-pill-active {
+  border-color: var(--ink);
+  color: var(--card);
+  background: var(--ink);
+  box-shadow: 0 12px 22px rgba(47, 36, 28, 0.18);
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.danger-button:hover,
+.option-pill:hover {
+  transform: translateY(-1px);
+}
