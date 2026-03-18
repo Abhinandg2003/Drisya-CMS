@@ -82,7 +82,7 @@ const Login = ({ setToken }) => {
                   type="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
-                  placeholder="admin@drishya.com"
+                  placeholder="admin@drisya.com"
                   required
                 />
               </label>
